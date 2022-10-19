@@ -1,0 +1,20 @@
+{:paths   ["src"]
+ :deps    {com.climate/claypoole                    {:mvn/version "1.1.4"}
+           com.computesoftware/csv-scanner          {:mvn/version "0.1.3"}
+           com.computesoftware/postgres             {:mvn/version "1.0.6"}
+           com.computesoftware/spec-helpers         {:mvn/version "0.1.9"}
+           com.computesoftware/aws-cur-ingest-model {:local/root "model"}
+           dev.kwill/anomkit                        {:mvn/version "1.0.1"}
+           }
+ :aliases {:build {:deps       {io.github.seancorfield/build-clj {:git/tag "v0.8.2" :git/sha "0ffdb4c"}}
+                   :ns-default build}
+
+           :dev   {:override-deps {com.computesoftware/aws-cur-ingest-model {:local/root "model"}}}
+
+           :test  {:extra-paths ["test"]
+                   :extra-deps  {org.clojure/test.check        {:mvn/version "1.1.1"}
+                                 provisdom/test                {:git/url "https://github.com/Provisdom/test.git"
+                                                                :sha     "c12852d4dbe90ed5a6a8675618cfbf49eed60970"}
+                                 lambdaisland/kaocha           {:mvn/version "1.69.1069"}
+                                 lambdaisland/kaocha-junit-xml {:mvn/version "1.16.98"}}
+                   :main-opts   ["-m" "kaocha.runner"]}}}
